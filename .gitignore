@@ -1,0 +1,5 @@
+*.h5
+*.model
+ChatBot/data/*
+DB/data/*
+Preprocessing/data/*
