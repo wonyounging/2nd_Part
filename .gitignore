@@ -1,6 +1,8 @@
-.gitigrnore
-*.h5
-*.model
+.gitignore.txt
 ChatBot/data/*
+ChatBot/model/*
 DB/data/*
+DB/.ipynb_checkpoints/*
+DB/test*.*
 Preprocessing/data/*
+*.h5
