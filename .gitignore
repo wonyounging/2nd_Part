@@ -1,4 +1,5 @@
 .gitignore.txt
+ChatBot/.idea/*
 ChatBot/data/*
 ChatBot/model/*
 DB/data/*
@@ -6,3 +7,10 @@ DB/.ipynb_checkpoints/*
 DB/test*.*
 Preprocessing/data/*
 *.h5
+*.iml
+*.xml
+*.pyc
+*.csv
+*.xlsx
+*.txt
+*.bin
