@@ -15,7 +15,7 @@ sys.path.append("C:/workspace2/ChatBot")
 from utils.Preprocess import Preprocess
 p = Preprocess(word2index_dic='./ChatBot/train_tools/dict/chatbot_dict.bin', userdic='./ChatBot/utils/user_dic.txt')
 
-# 단어 시뭔스 생성
+# 단어 시퀀스 생성
 sequences = []
 for sentence in queries:
     pos = p.pos(sentence)
