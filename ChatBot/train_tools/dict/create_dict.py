@@ -12,7 +12,7 @@ def read_corpus_data(filename):
     return data
 
 # 말뭉치 데이터 가져오기
-corpus_data = read_corpus_data('./ChatBot/train_tools/dict/corpus_a.txt')
+corpus_data = read_corpus_data('./ChatBot/train_tools/dict/corpus02.txt')
 
 # 말뭉치 데이터에서 키워드만 추출해서 사전 리스트 생성
 p = Preprocess(word2index_dic='./ChatBot/train_tools/dict/chatbot_dict.bin', userdic='./ChatBot/utils/user_dic.txt')
@@ -29,7 +29,7 @@ tokenizer.fit_on_texts(dict)
 word_index = tokenizer.word_index
 
 # 사전 파일 생성
-f = open('./ChatBot/train_tools/dict/chatbot_dict.bin', 'wb')
+f = open('./ChatBot/train_tools/dict/chatbot_dict02.bin', 'wb')
 try:
     pickle.dump(word_index, f)
 except Exception as e:
