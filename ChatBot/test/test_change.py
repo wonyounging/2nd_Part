@@ -3,7 +3,7 @@ import sys
 import re
 from re import search, findall, match, sub
 #
-class change():
+class Change():
     def __init__(self, func, new_menu):
         self.func = func
         self.new_menu = new_menu
@@ -71,22 +71,41 @@ class change():
         # ner_train 추가
         elif self.func == 'ner_train':
             try:
-                print('ner_train 기능')
                 origin = open('./ChatBot/models/ner/ner_train.txt', mode= 'r', encoding = 'UTF8')
                 copy = origin.readlines()
-                num =0 
-                for i in copy :
-                    print(i)
-                    if num > 3 :
-                        break
-                    if not(search(';', i)) and search('짜장면', i):   # search 는 문자열의 중간에 '짜장면'이 위치할 때도 성공함 
-                        num +=1
-                        new_line = i.replace('짜장면', self.new_menu)
-                        print(i)
-                        # copy.append(new_line)
+
+                temp_result = []    # ;과 ;사이의 데이터 묶음들이 저장될 임시 리스트
+                temp_group = []     # ;과 ;사이의 데이터들이 누적되어 저장될 임시 리스트
+                # ;으로 시작하고 다음 ;이 나오기 전끼리 묶음
+                for line in copy:
+                    if line.startswith(';'):
+                        if temp_group:
+                            temp_result.append(temp_group)
+                        temp_group = [line]
                     else:
-                        pass
-                print(num)
+                        temp_group.append(line)
+
+                use_data = []       # 특정 단어만이 포함된 묶음들만 들어갈 임시 리스트
+                # ;으로 분리된 데이터에서 짜장면이 포함된 데이터만 추출
+                for i in temp_result:
+                    flag = 'F'
+                    for j in i:
+                        if "짜장면" in j:
+                            flag = 'T'
+                    if flag == 'T':
+                        use_data.append(i)  # 짜장면이라는 단어가 들어가있는 묶음이 append
+
+                new_data = []   # 사용자가 입력한 음식명으로 변경될 임시 리스트
+                add_data = []   # 변경된 데이터들이 기존의 copy에 extend될 리스트
+                # 짜장면이 포함된 데이터에서 짜장면을 사용자가 입력한 메뉴로 변경
+                for i in use_data:
+                    for j in i:
+                        new_data = j.replace('짜장면', self.new_menu)
+                        add_data.append(new_data)
+                add_data.pop()
+                copy.append('\n')
+                copy.extend(add_data)
+
             except Exception as e :
                 print("오류 발생 : ",e)
 
@@ -110,19 +129,19 @@ if __name__ == "__main__":
             os.system('cls')
             print('=========== corpus 기능 ===========')
             new_menu = input("새로운 메뉴 입력 : ")
-            ch = change('corpus', new_menu)
+            ch = Change('corpus', new_menu)
             ch.chage_file()
         elif category == 2:
             os.system('cls')
             print('=========== user_dic 기능 ===========')
             new_menu = input("새로운 메뉴 입력 : ")
-            ch = change('user_dic', new_menu)
+            ch = Change('user_dic', new_menu)
             ch.chage_file()
         elif category == 3:
             os.system('cls')
             print('=========== ner_train 기능 ===========')
             new_menu = input("새로운 메뉴 입력 : ")
-            ch = change('ner_train', new_menu)
+            ch = Change('ner_train', new_menu)
             ch.chage_file()
         elif category == 0:
             print('종료')
