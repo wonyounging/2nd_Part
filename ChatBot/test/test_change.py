@@ -9,7 +9,7 @@ class Change():
         self.new_menu = new_menu
 
     def save_filter(self):
-        chk = input('기존의 파일(corpus)에 덮어쓰시겠습니까?(Y/N) : ')
+        chk = input(f'기존의 파일({self.func})에 덮어쓰시겠습니까?(Y/N) : ')
         chk = chk.upper()
         
         if chk == "Y":
@@ -20,7 +20,7 @@ class Change():
             else:
                 new_name = 'ner_train'
         else:
-            new_name = input("저장할 corpus 파일명 입력 : ")
+            new_name = input(f"저장할 {self.func} 파일명 입력 : ")
         return new_name
 
     def chage_file(self):
@@ -123,7 +123,7 @@ if __name__ == "__main__":
     os.system('cls')
     while(1):
         os.system('cls')
-        print('corpus 추가 : 1 | user_dic 추가 : 2 | ner_train 추가 : 3 | 종료 : 0')
+        print('corpus 추가 : 1 | user_dic 추가 : 2 | ner_train 추가 : 3 | 통합 추가 : 4 | 종료 : 0')
         category = int(input('기능 선택 : '))
         if category == 1:
             os.system('cls')
@@ -131,18 +131,32 @@ if __name__ == "__main__":
             new_menu = input("새로운 메뉴 입력 : ")
             ch = Change('corpus', new_menu)
             ch.chage_file()
+            os.system('pause')
         elif category == 2:
             os.system('cls')
             print('=========== user_dic 기능 ===========')
             new_menu = input("새로운 메뉴 입력 : ")
             ch = Change('user_dic', new_menu)
             ch.chage_file()
+            os.system('pause')
         elif category == 3:
             os.system('cls')
             print('=========== ner_train 기능 ===========')
             new_menu = input("새로운 메뉴 입력 : ")
             ch = Change('ner_train', new_menu)
             ch.chage_file()
+            os.system('pause')
+        elif category == 4:
+            os.system('cls')
+            print('=========== 통합 기능 ===========')
+            new_menu = input("새로운 메뉴 입력 : ")
+            ch_c = Change('corpus', new_menu)
+            ch_c.chage_file()
+            ch_u = Change('user_dic', new_menu)
+            ch_u.chage_file()
+            ch_n = Change('ner_train', new_menu)
+            ch_n.chage_file()
+            os.system('pause')
         elif category == 0:
             print('종료')
             os.system('pause')

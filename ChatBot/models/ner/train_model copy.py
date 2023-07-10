@@ -23,7 +23,7 @@ def read_file(file_name):
     return sents
 
 # 전처리 객체 생성
-p = Preprocess(word2index_dic='./ChatBot/train_tools/dict/chatbot_dict03_or.bin', userdic='./ChatBot/utils/user_dic.txt')
+p = Preprocess(word2index_dic='./ChatBot/train_tools/dict/chatbot_dict03_up.bin', userdic='./ChatBot/utils/user_dic.txt')
 
 # 학습용 말뭉치 데이터를 불러옴
 corpus = read_file('./ChatBot/models/ner/ner_train.txt')
@@ -94,7 +94,7 @@ model.compile(loss='categorical_crossentropy', optimizer=Adam(0.01),metrics=['ac
 model.fit(x_train, y_train, batch_size=128, epochs=10)
 
 print('평가 결과 : ', model.evaluate(x_test, y_test)[1])
-model.save('./ChatBot/models/ner/ner_model_03_full.h5')
+model.save('./ChatBot/models/ner/ner_model_03_up_10.h5')
 
 # 시퀀스를 NER 태그로 변환
 def sequences_to_tag(sequences):    # 예측값을 index_to_ner를 사용하여 태깅 정보로 변경하는 함수
