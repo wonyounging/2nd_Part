@@ -7,7 +7,7 @@ p = Preprocess(word2index_dic='./ChatBot/train_tools/dict/chatbot_dict.bin', use
 
 intent = IntentModel(model_name='./ChatBot/models/intent/intent_model.h5', proprocess=p)
 
-query = "오늘 오후 6시에 김밥 주문이요."
+query = "오전에 탕수육 10개 주문합니다"
 predict = intent.predict_class(query)
 predict_label = intent.labels[predict]
 

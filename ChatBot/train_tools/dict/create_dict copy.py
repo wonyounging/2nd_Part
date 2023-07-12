@@ -19,7 +19,8 @@ p = Preprocess(word2index_dic='./ChatBot/train_tools/dict/chatbot_dict03_up.bin'
 dict = []
 for c in corpus_data:
     if c[1].startswith(';'):
-        print(c)
+        # print(c)
+        pass
     else:
         pos = p.pos(c[1])
         for k in pos:

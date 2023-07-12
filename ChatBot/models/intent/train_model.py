@@ -20,7 +20,7 @@ sequences = []
 for sentence in queries:
     pos = p.pos(sentence)
     keywords = p.get_keywords(pos, without_tag=True)
-    seq = p.get_wordidx_squence(keywords)
+    seq = p.get_wordidx_sequence(keywords)
     sequences.append(seq)
 
 # 단어 인덱스 스퀀스 벡터 생성
